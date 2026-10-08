@@ -1,275 +1,287 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { 
-  ShieldCheck, 
-  Layers, 
-  FileCheck2, 
-  BookOpen, 
+  ArrowUpRight, 
   Check, 
-  Sparkles,
-  Award,
-  Compass,
-  FileSpreadsheet
+  Sparkles, 
+  Layers, 
+  FileText, 
+  Sliders, 
+  BookOpen, 
+  ShieldCheck, 
+  GraduationCap, 
+  ChevronRight,
+  BarChart3,
+  CheckCircle2,
+  Share2,
+  Download
 } from "lucide-react";
 
 export default function HomePage() {
+  const [activeTab, setActiveTab] = useState<"ratio" | "formats" | "spec">("ratio");
+
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-sky-100 selection:text-sky-900">
-      {/* 1. THANH ĐIỀU HƯỚNG TỐI GIẢN (MICRO HEADER) */}
-      <header className="border-b border-slate-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600 font-bold text-xs">
-              7991
-            </div>
-            <span className="font-bold text-sm tracking-tight text-slate-900">
-              Trợ Lý Khảo Thí
-            </span>
-          </div>
-          <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-            <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
-            <span className="hidden sm:inline">Quy chuẩn GDPT 2018</span>
-            <span className="text-slate-300 hidden sm:inline">•</span>
-            <span>CV 7991/BGDĐT-GDTrH</span>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-white text-neutral-900 font-sans selection:bg-neutral-100 selection:text-neutral-900">
+      {/* BACKGROUND GRID (CHUẨN DUB.CO) */}
+      <div className="relative overflow-hidden pt-12 pb-24 md:pt-20 md:pb-32">
+        {/* Subtle Square Grid Overlay */}
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-70" />
 
-      {/* 2. HERO SECTION - ĐẲNG CẤP, TỰ NHIÊN, KHOA HỌC */}
-      <section className="pt-16 pb-20 md:pt-24 md:pb-28 px-4 sm:px-6 max-w-5xl mx-auto text-center">
-        {/* Nhãn văn bản quy chuẩn */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-sky-50 text-sky-800 border border-sky-200/80 mb-6">
-          <Award className="w-3.5 h-3.5 text-sky-600" />
-          <span>Chuẩn Khảo Thí Định Kỳ Bộ GD&ĐT</span>
-        </div>
-
-        {/* Tiêu đề chính lớn, tracking chặt, tương phản cao */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 tracking-[-0.03em] leading-[1.15] max-w-4xl mx-auto">
-          Chuẩn Hóa Ma Trận & Bản Đặc Tả Đề Kiểm Tra Theo{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-sky-800">
-            Công Văn 7991
-          </span>
-        </h1>
-
-        {/* Đoạn dẫn dắt tự nhiên, thoát ý */}
-        <p className="mt-6 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
-          Nền tảng số hóa học thuật hỗ trợ giáo viên phổ thông xây dựng khung ma trận 10 điểm, phân bổ chuẩn xác tỉ lệ 40-30-30 và tích hợp 4 dạng thức đánh giá năng lực mới một cách khoa học.
-        </p>
-
-        {/* 3 CHỈ SỐ CỐT LÕI - THIẾT KẾ PHẲNG TINH TẾ */}
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-          <div className="p-5 rounded-2xl bg-slate-50/60 border border-slate-100 text-left">
-            <div className="text-xs font-bold text-sky-700 tracking-wide uppercase">Tỉ Lệ Vàng</div>
-            <div className="text-2xl font-extrabold text-slate-900 mt-1">40 : 30 : 30</div>
-            <p className="text-xs text-slate-500 mt-1.5 leading-snug">
-              40% Nhận biết – 30% Thông hiểu – 30% Vận dụng trên thang điểm 10.0
-            </p>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* 1. TOP PILL BADGE (CHUẨN DUB.CO) */}
+          <div className="flex justify-center">
+            <a
+              href="#quy-chuan"
+              className="group inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-white px-4 py-1.5 text-xs font-medium text-neutral-800 shadow-sm transition-all hover:bg-neutral-50 hover:border-neutral-300 active:scale-95"
+            >
+              <span>Công Văn Số 7991/BGDĐT-GDTrH</span>
+              <ArrowUpRight className="size-3.5 text-neutral-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-neutral-700" />
+            </a>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-50/60 border border-slate-100 text-left">
-            <div className="text-xs font-bold text-sky-700 tracking-wide uppercase">Cấu Trúc Đề</div>
-            <div className="text-2xl font-extrabold text-slate-900 mt-1">4 Dạng Thức</div>
-            <p className="text-xs text-slate-500 mt-1.5 leading-snug">
-              Trắc nghiệm 4 lựa chọn, Đúng/Sai lũy tiến, Trả lời ngắn & Tự luận
-            </p>
-          </div>
+          {/* 2. MAIN HEADLINE (CHUẨN DUB.CO - BOLD, COMPACT, TIGHT TRACKING) */}
+          <h1 className="mt-6 text-balance text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-neutral-900 leading-[1.08] max-w-4xl mx-auto">
+            Chuẩn hóa ma trận & đề kiểm tra
+          </h1>
 
-          <div className="p-5 rounded-2xl bg-slate-50/60 border border-slate-100 text-left">
-            <div className="text-xs font-bold text-sky-700 tracking-wide uppercase">Văn Bản Hành Chính</div>
-            <div className="text-2xl font-extrabold text-slate-900 mt-1">Nghị Định 30</div>
-            <p className="text-xs text-slate-500 mt-1.5 leading-snug">
-              Định dạng trang in A4 chuẩn lề, phông Times New Roman đồng nhất
-            </p>
-          </div>
-        </div>
-
-        {/* 3. VISUAL SHOWCASE: MÔ PHỎNG MA TRẬN A4 KỸ THUẬT SỐ */}
-        <div className="mt-16 text-left max-w-4xl mx-auto">
-          <div className="p-6 sm:p-8 rounded-3xl bg-white border border-sky-100 shadow-xl shadow-sky-100/50 relative overflow-hidden">
-            {/* Header khung xem trước */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-100 gap-3">
-              <div>
-                <span className="text-[11px] font-bold text-sky-600 uppercase tracking-wider">Cấu Trúc Khung Mẫu</span>
-                <h3 className="text-lg font-bold text-slate-900 mt-0.5">Khung Ma Trận Kiểm Tra Định Kỳ (Phụ Lục CV 7991)</h3>
-              </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 self-start sm:self-auto">
-                <Check className="w-3.5 h-3.5" />
-                <span>Tổng Điểm: 10.0 (100%)</span>
-              </div>
-            </div>
-
-            {/* Thanh cân bằng năng lực thị giác */}
-            <div className="py-6 space-y-2.5">
-              <div className="flex items-center justify-between text-xs font-semibold text-slate-700">
-                <span>Phân Bổ Tỉ Lệ Mức Độ Nhận Thức</span>
-                <span className="text-slate-400">Thang 10 điểm</span>
-              </div>
-              <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden flex">
-                <div className="bg-sky-600 h-full w-[40%]" title="Nhận biết 40%" />
-                <div className="bg-sky-400 h-full w-[30%]" title="Thông hiểu 30%" />
-                <div className="bg-sky-200 h-full w-[30%]" title="Vận dụng 30%" />
-              </div>
-              <div className="grid grid-cols-3 text-center text-xs pt-1 text-slate-600">
-                <div className="flex items-center justify-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-sky-600" />
-                  <span>Biết: <strong>4.0đ</strong> (40%)</span>
-                </div>
-                <div className="flex items-center justify-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-sky-400" />
-                  <span>Hiểu: <strong>3.0đ</strong> (30%)</span>
-                </div>
-                <div className="flex items-center justify-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-sky-200 border border-sky-300" />
-                  <span>Vận dụng: <strong>3.0đ</strong> (30%)</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Bảng mini mô phỏng trực quan */}
-            <div className="overflow-x-auto rounded-xl border border-slate-200/80 bg-slate-50/40 p-1">
-              <table className="w-full text-left text-xs border-collapse">
-                <thead>
-                  <tr className="border-b border-slate-200 text-slate-500 text-[11px]">
-                    <th className="p-2.5 font-bold">Phần</th>
-                    <th className="p-2.5 font-bold">Hình Thức Câu Hỏi</th>
-                    <th className="p-2.5 font-bold">Cơ Chế Tính Điểm</th>
-                    <th className="p-2.5 font-bold text-right">Mức Độ</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100 text-slate-700">
-                  <tr className="hover:bg-white transition-colors">
-                    <td className="p-2.5 font-bold text-sky-700">Phần I</td>
-                    <td className="p-2.5">Trắc nghiệm 4 lựa chọn</td>
-                    <td className="p-2.5 text-slate-500">0.25 điểm / câu đúng</td>
-                    <td className="p-2.5 text-right font-medium">Nhận biết & Thông hiểu</td>
-                  </tr>
-                  <tr className="hover:bg-white transition-colors">
-                    <td className="p-2.5 font-bold text-sky-700">Phần II</td>
-                    <td className="p-2.5">Trắc nghiệm Đúng / Sai</td>
-                    <td className="p-2.5 text-slate-500">Lũy tiến: 0.1 – 0.25 – 0.5 – 1.0đ</td>
-                    <td className="p-2.5 text-right font-medium">Thông hiểu & Vận dụng</td>
-                  </tr>
-                  <tr className="hover:bg-white transition-colors">
-                    <td className="p-2.5 font-bold text-sky-700">Phần III</td>
-                    <td className="p-2.5">Câu hỏi trả lời ngắn</td>
-                    <td className="p-2.5 text-slate-500">0.25đ hoặc 0.5 điểm / câu</td>
-                    <td className="p-2.5 text-right font-medium">Vận dụng giải quyết vấn đề</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. BỐN TRỤ CỘT CHỨC NĂNG - BENTO GRID HIỆN ĐẠI */}
-      <section className="py-20 bg-slate-50/60 border-t border-slate-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="max-w-2xl mb-12">
-            <span className="text-xs font-bold text-sky-700 uppercase tracking-wider">Hệ Thống Tiêu Chuẩn</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2 tracking-tight">
-              Bốn Trụ Cột Đổi Mới Khảo Thí Định Kỳ
-            </h2>
-            <p className="text-sm text-slate-600 mt-2">
-              Bám sát từng chỉ dẫn kỹ thuật trong Công văn 7991/BGDĐT-GDTrH ban hành ngày 17/12/2024.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Bento Card 1 */}
-            <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-sm hover:border-sky-300 transition-all">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-mono font-bold text-sky-600 bg-sky-50 px-2.5 py-1 rounded-lg">01</span>
-                <Layers className="w-5 h-5 text-slate-400" />
-              </div>
-              <h3 className="text-base font-bold text-slate-900 mb-2">Khung Ma Trận Ma Trận Đa Chiều 10 Điểm</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Tự động liên kết mạch kiến thức, đơn vị bài học với 3 mức độ nhận thức. Đảm bảo tổng số điểm tròn 10.0 tuyệt đối, giải quyết triệt để lỗi làm tròn hoặc lệch tỉ lệ thường gặp khi lập thủ công.
-              </p>
-            </div>
-
-            {/* Bento Card 2 */}
-            <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-sm hover:border-sky-300 transition-all">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-mono font-bold text-sky-600 bg-sky-50 px-2.5 py-1 rounded-lg">02</span>
-                <BookOpen className="w-5 h-5 text-slate-400" />
-              </div>
-              <h3 className="text-base font-bold text-slate-900 mb-2">Bản Đặc Tả Yêu Cầu Cần Đạt (YCCĐ)</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Mô tả chi tiết năng lực người học cần thể hiện theo từng câu hỏi. Phân định rõ câu nào thuộc Phần I, Phần II hay Phần III, giúp tổ bộ môn dễ dàng bảo vệ đề trước ban giám hiệu và thanh tra chuyên môn.
-              </p>
-            </div>
-
-            {/* Bento Card 3 */}
-            <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-sm hover:border-sky-300 transition-all">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-mono font-bold text-sky-600 bg-sky-50 px-2.5 py-1 rounded-lg">03</span>
-                <Compass className="w-5 h-5 text-slate-400" />
-              </div>
-              <h3 className="text-base font-bold text-slate-900 mb-2">Chuẩn Hóa 4 Dạng Thức Trắc Nghiệm Mới</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Đáp ứng trọn vẹn định dạng đề thi mới nhất từ kỳ thi tốt nghiệp THPT và kiểm tra định kỳ cấp THCS: từ dạng trắc nghiệm nhiều phương án đến câu hỏi Đúng/Sai tính điểm lũy tiến và câu hỏi trả lời ngắn.
-              </p>
-            </div>
-
-            {/* Bento Card 4 */}
-            <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-sm hover:border-sky-300 transition-all">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-mono font-bold text-sky-600 bg-sky-50 px-2.5 py-1 rounded-lg">04</span>
-                <FileCheck2 className="w-5 h-5 text-slate-400" />
-              </div>
-              <h3 className="text-base font-bold text-slate-900 mb-2">Xuất Bản Học Thuật Chuẩn Nghị Định 30</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Trình bày văn bản khoa học theo quy định hành chính nhà nước: căn lề trang in chuẩn (trái 3cm, phải 1.5cm, trên/dưới 2cm), phông chữ Times New Roman 13pt và bảng biểu không bao giờ bị vỡ khung.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. PHẠM VI ÁP DỤNG & GIÁ TRỊ THỰC TIỄN */}
-      <section className="py-20 max-w-5xl mx-auto px-4 sm:px-6">
-        <div className="p-8 sm:p-10 rounded-3xl bg-slate-900 text-white flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="max-w-xl">
-            <span className="text-xs font-bold text-sky-400 uppercase tracking-wider">Phạm Vi Triển Khai</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold mt-1 tracking-tight text-white">
-              Đồng Hành Cùng Mọi Tổ Chuyên Môn THCS & THPT
-            </h2>
-            <p className="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Tương thích đầy đủ với cả 3 bộ sách giáo khoa hiện hành (Kết nối tri thức, Cánh Diều, Chân trời sáng tạo) cho tất cả các môn học từ Lớp 6 đến Lớp 12 trong toàn bộ các đợt kiểm tra Giữa học kỳ và Cuối học kỳ.
-            </p>
-          </div>
-
-          <div className="w-full md:w-auto shrink-0 flex flex-col gap-2">
-            <div className="px-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200 flex items-center gap-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-              <span>Cấp THCS (Lớp 6, 7, 8, 9)</span>
-            </div>
-            <div className="px-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200 flex items-center gap-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-              <span>Cấp THPT (Lớp 10, 11, 12)</span>
-            </div>
-            <div className="px-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200 flex items-center gap-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              <span>Kiểm tra Giữa kỳ & Cuối kỳ</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. FOOTER SANG TRỌNG, KHOA HỌC */}
-      <footer className="border-t border-slate-100 py-10 text-slate-500 text-xs bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <div className="flex items-center gap-2">
-            <div className="w-5 h-5 rounded bg-sky-100 text-sky-700 font-bold text-[10px] flex items-center justify-center">
-              7991
-            </div>
-            <span className="font-bold text-slate-900">Trợ Lý Khảo Thí CV 7991</span>
-          </div>
-          <p className="text-slate-400 text-[11px]">
-            Căn cứ pháp lý: Công văn số 7991/BGDĐT-GDTrH ngày 17/12/2024 của Bộ Giáo dục và Đào tạo.
+          {/* 3. SUBTITLE (CHUẨN DUB.CO) */}
+          <p className="mt-5 max-w-xl text-pretty text-base sm:text-lg font-normal text-neutral-600 mx-auto leading-relaxed">
+            Trợ lý khảo thí hiện đại hỗ trợ giáo viên phổ thông xây dựng ma trận 10 điểm, phân bổ chuẩn xác tỉ lệ 40-30-30 và tích hợp 4 dạng thức đánh giá mới.
           </p>
-          <p className="text-slate-400 text-[11px]">
-            Sáng kiến chuyển đổi số sư phạm 2026
+
+          {/* 4. TWO CTA BUTTONS (CHUẨN DUB.CO) */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="#mockup"
+              className="flex h-11 items-center justify-center rounded-lg bg-neutral-900 px-6 text-sm font-medium text-white transition-all hover:bg-neutral-800 shadow-sm active:scale-95"
+            >
+              Bắt đầu ngay
+            </a>
+            <a
+              href="#tinh-nang"
+              className="flex h-11 items-center justify-center rounded-lg border border-neutral-200 bg-white px-6 text-sm font-medium text-neutral-900 transition-all hover:bg-neutral-50 shadow-sm active:scale-95"
+            >
+              Tìm hiểu quy chuẩn
+            </a>
+          </div>
+
+          {/* 5. FLOATING PILL TABS ABOVE MOCKUP (CHUẨN BỐ CỤC DUB.CO TRONG ẢNH) */}
+          <div className="mt-16 sm:mt-20 flex flex-col items-center gap-3">
+            {/* Pill 1 (Center Top) */}
+            <button
+              onClick={() => setActiveTab("ratio")}
+              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-medium shadow-sm transition-all active:scale-95 ${
+                activeTab === "ratio"
+                  ? "border-purple-300 bg-white text-purple-900 ring-2 ring-purple-100"
+                  : "border-neutral-200 bg-white/90 text-neutral-700 hover:bg-neutral-50"
+              }`}
+            >
+              <span className="flex size-4 items-center justify-center rounded bg-purple-100 text-purple-600 text-[10px]">
+                ⚖️
+              </span>
+              <span>Tỉ Lệ 40-30-30 Chuẩn Bộ</span>
+            </button>
+
+            {/* Pill 2 & 3 (Bottom Left & Right) */}
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
+              <button
+                onClick={() => setActiveTab("formats")}
+                className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-medium shadow-sm transition-all active:scale-95 ${
+                  activeTab === "formats"
+                    ? "border-emerald-300 bg-white text-emerald-900 ring-2 ring-emerald-100"
+                    : "border-neutral-200 bg-white/90 text-neutral-700 hover:bg-neutral-50"
+                }`}
+              >
+                <span className="flex size-4 items-center justify-center rounded bg-emerald-100 text-emerald-600 text-[10px]">
+                  📊
+                </span>
+                <span>4 Dạng Thức Khảo Thí Mới</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("spec")}
+                className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-medium shadow-sm transition-all active:scale-95 ${
+                  activeTab === "spec"
+                    ? "border-amber-300 bg-white text-amber-900 ring-2 ring-amber-100"
+                    : "border-neutral-200 bg-white/90 text-neutral-700 hover:bg-neutral-50"
+                }`}
+              >
+                <span className="flex size-4 items-center justify-center rounded bg-amber-100 text-amber-600 text-[10px]">
+                  📄
+                </span>
+                <span>Bản Đặc Tả Yêu Cầu Cần Đạt</span>
+              </button>
+            </div>
+          </div>
+
+          {/* 6. PRODUCT UI MOCKUP WINDOW (MÔ PHỎNG NGUYÊN BẢN CỬA SỔ DUB.CO) */}
+          <div id="mockup" className="mt-8 text-left">
+            <div className="rounded-2xl border border-neutral-200 bg-white shadow-2xl overflow-hidden">
+              {/* Window Header */}
+              <div className="flex items-center justify-between border-b border-neutral-200 bg-neutral-50/70 px-4 py-3">
+                <div className="flex items-center gap-2">
+                  <div className="size-3 rounded-full bg-red-400/80" />
+                  <div className="size-3 rounded-full bg-amber-400/80" />
+                  <div className="size-3 rounded-full bg-emerald-400/80" />
+                  <span className="ml-2 text-xs font-medium text-neutral-500 hidden sm:inline">
+                    Khung Ma Trận Đề Kiểm Tra Định Kỳ • Chuẩn CV 7991
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-700 border border-emerald-200">
+                    <Check className="size-3 text-emerald-600" /> Đạt Chuẩn 10.0 Điểm
+                  </span>
+                </div>
+              </div>
+
+              {/* Dashboard Content Inside Mockup */}
+              <div className="p-4 sm:p-6 space-y-6">
+                {/* Stats Bar (Tương tự Pending payouts & Total paid của Dub) */}
+                <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                  <div className="p-3.5 rounded-xl border border-neutral-200/80 bg-neutral-50/50">
+                    <p className="text-[11px] font-medium text-neutral-500 uppercase tracking-wider">Tổng Điểm Bài Thi</p>
+                    <p className="text-xl font-bold text-neutral-900 mt-0.5">10.00 Điểm</p>
+                    <p className="text-[11px] text-neutral-500 mt-1">Chuẩn 100% thang điểm</p>
+                  </div>
+                  <div className="p-3.5 rounded-xl border border-purple-100 bg-purple-50/40">
+                    <p className="text-[11px] font-medium text-purple-700 uppercase tracking-wider">Nhận Biết (40%)</p>
+                    <p className="text-xl font-bold text-purple-950 mt-0.5">4.00 Điểm</p>
+                    <p className="text-[11px] text-purple-600 mt-1">12 câu P.I + 1 câu P.II</p>
+                  </div>
+                  <div className="p-3.5 rounded-xl border border-sky-100 bg-sky-50/40">
+                    <p className="text-[11px] font-medium text-sky-700 uppercase tracking-wider">Thông Hiểu (30%)</p>
+                    <p className="text-xl font-bold text-sky-950 mt-0.5">3.00 Điểm</p>
+                    <p className="text-[11px] text-sky-600 mt-1">4 câu P.I + 1 câu P.II + 2 câu P.III</p>
+                  </div>
+                  <div className="p-3.5 rounded-xl border border-emerald-100 bg-emerald-50/40">
+                    <p className="text-[11px] font-medium text-emerald-700 uppercase tracking-wider">Vận Dụng (30%)</p>
+                    <p className="text-xl font-bold text-emerald-950 mt-0.5">3.00 Điểm</p>
+                    <p className="text-[11px] text-emerald-600 mt-1">2 câu P.II + 2 câu P.III</p>
+                  </div>
+                </div>
+
+                {/* Data Table (Bảng chuẩn Dub.co) */}
+                <div className="overflow-x-auto rounded-xl border border-neutral-200">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead>
+                      <tr className="border-b border-neutral-200 bg-neutral-50/80 text-neutral-500 text-[11px]">
+                        <th className="p-3 font-semibold">Chủ đề / Đơn vị kiến thức</th>
+                        <th className="p-3 font-semibold">Nhận biết (40%)</th>
+                        <th className="p-3 font-semibold">Thông hiểu (30%)</th>
+                        <th className="p-3 font-semibold">Vận dụng (30%)</th>
+                        <th className="p-3 font-semibold">Tổng điểm</th>
+                        <th className="p-3 font-semibold text-right">Trạng thái</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-neutral-100 text-neutral-800">
+                      <tr className="hover:bg-neutral-50/60 transition-colors">
+                        <td className="p-3 font-medium">Mệnh đề & Tập hợp</td>
+                        <td className="p-3 text-neutral-600">1.5đ (6 câu)</td>
+                        <td className="p-3 text-neutral-600">1.0đ (2 câu)</td>
+                        <td className="p-3 text-neutral-600">1.0đ (2 câu)</td>
+                        <td className="p-3 font-bold text-neutral-900">3.50đ</td>
+                        <td className="p-3 text-right">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700">
+                            ● Đạt chuẩn
+                          </span>
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-neutral-50/60 transition-colors">
+                        <td className="p-3 font-medium">Bất phương trình bậc nhất hai ẩn</td>
+                        <td className="p-3 text-neutral-600">1.5đ (6 câu)</td>
+                        <td className="p-3 text-neutral-600">1.0đ (2 câu)</td>
+                        <td className="p-3 text-neutral-600">1.0đ (2 câu)</td>
+                        <td className="p-3 font-bold text-neutral-900">3.50đ</td>
+                        <td className="p-3 text-right">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700">
+                            ● Đạt chuẩn
+                          </span>
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-neutral-50/60 transition-colors">
+                        <td className="p-3 font-medium">Hệ thức lượng trong tam giác</td>
+                        <td className="p-3 text-neutral-600">1.0đ (4 câu)</td>
+                        <td className="p-3 text-neutral-600">1.0đ (2 câu)</td>
+                        <td className="p-3 text-neutral-600">1.0đ (2 câu)</td>
+                        <td className="p-3 font-bold text-neutral-900">3.00đ</td>
+                        <td className="p-3 text-right">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700">
+                            ● Đạt chuẩn
+                          </span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Bottom Active Pill (Giống thanh tag dưới đáy của Dub) */}
+                <div className="flex items-center justify-between text-xs text-neutral-500 pt-1">
+                  <span>Khung đề mẫu: Môn Toán • Lớp 10 • Thời gian: 90 phút</span>
+                  <span className="font-semibold text-neutral-800">Bộ Sách: Kết nối tri thức</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 7. FEATURES GRID (CHUẨN DUB.CO MARKETING SECTION) */}
+      <section id="tinh-nang" className="py-20 border-t border-neutral-200 bg-neutral-50/50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-xl mb-14">
+            <h2 className="text-3xl font-bold tracking-tight text-neutral-900">
+              Thiết kế chuyên biệt cho công tác khảo thí
+            </h2>
+            <p className="mt-3 text-base text-neutral-600">
+              Giải quyết trọn vẹn các thách thức chuyên môn khi triển khai Công văn 7991 trong trường học.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-6 rounded-2xl bg-white border border-neutral-200 shadow-sm hover:border-neutral-300 transition-all">
+              <div className="size-10 rounded-xl bg-neutral-100 flex items-center justify-center text-neutral-900 font-bold mb-4">
+                01
+              </div>
+              <h3 className="text-base font-bold text-neutral-900 mb-2">Tự Động Cân Bằng 40-30-30</h3>
+              <p className="text-xs text-neutral-600 leading-relaxed">
+                Hệ thống tự động tính toán số lượng câu hỏi và điểm số cho từng mức độ nhận thức, đảm bảo luôn khớp tròn 10.0 điểm mà không cần tính nhẩm thủ công.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-white border border-neutral-200 shadow-sm hover:border-neutral-300 transition-all">
+              <div className="size-10 rounded-xl bg-neutral-100 flex items-center justify-center text-neutral-900 font-bold mb-4">
+                02
+              </div>
+              <h3 className="text-base font-bold text-neutral-900 mb-2">Đúng 4 Dạng Thức Khảo Thí Mới</h3>
+              <p className="text-xs text-neutral-600 leading-relaxed">
+                Tích hợp đầy đủ dạng thức trắc nghiệm nhiều lựa chọn, dạng đúng/sai chấm điểm lũy tiến (0.1 - 0.25 - 0.5 - 1.0đ) và câu trả lời ngắn theo đúng quy chế mới.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-white border border-neutral-200 shadow-sm hover:border-neutral-300 transition-all">
+              <div className="size-10 rounded-xl bg-neutral-100 flex items-center justify-center text-neutral-900 font-bold mb-4">
+                03
+              </div>
+              <h3 className="text-base font-bold text-neutral-900 mb-2">Xuất Bản A4 Chuẩn Nghị Định 30</h3>
+              <p className="text-xs text-neutral-600 leading-relaxed">
+                Định dạng tệp văn bản hoàn chỉnh với phông chữ Times New Roman 13pt, lề trang in chuẩn (trái 3cm, phải 1.5cm, trên/dưới 2cm) và bảng biểu không bao giờ bị lệch.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. FOOTER TỐI GIẢN (CHUẨN DUB.CO FOOTER) */}
+      <footer className="border-t border-neutral-200 py-12 bg-white text-xs text-neutral-500">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-neutral-900 text-sm">Trợ Lý Khảo Thí</span>
+            <span className="text-neutral-300">|</span>
+            <span>Công văn số 7991/BGDĐT-GDTrH</span>
+          </div>
+          <p className="text-neutral-500">
+            Sáng kiến số hóa giáo dục phục vụ giáo viên THCS & THPT 2026
           </p>
         </div>
       </footer>
