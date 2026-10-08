@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: troly-giaoduc-cv7991
+    env: node
+    plan: free
+    region: singapore
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      - key: NINE_ROUTER_API_KEY
+        value: sk-8f7041f3855b1b1a-wmv4fk-2ea26ec8
+      - key: NINE_ROUTER_BASE_URL
+        value: https://9router-production-8466.up.railway.app/v1
+      - key: NINE_ROUTER_MODEL
+        value: ag/gemini-3.6-flash-low
