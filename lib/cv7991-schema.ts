@@ -57,7 +57,7 @@ export interface FullExamAssessment {
   };
 }
 
-// Dữ liệu mẫu khởi tạo chuẩn Công văn 7991 (Toán 10 - Giữa học kỳ I)
+// Dữ liệu mẫu khởi tạo ma trận khảo thí 10 điểm (Toán 10 - Giữa học kỳ I)
 export const DEFAULT_EXAM_DATA: FullExamAssessment = {
   config: {
     subject: "Toán",

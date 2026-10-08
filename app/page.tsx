@@ -18,12 +18,17 @@ import {
   Download,
   Zap,
   Printer,
-  MousePointerClick
+  MousePointerClick,
+  Loader2
 } from "lucide-react";
 import gsap from "gsap";
+import { DEFAULT_EXAM_DATA } from "@/lib/cv7991-schema";
+import { generateWordDocx } from "@/lib/docx-generator";
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"ratio" | "formats" | "spec">("ratio");
+  const [isExporting, setIsExporting] = useState(false);
+  const [exportSuccess, setExportSuccess] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
@@ -92,9 +97,33 @@ export default function HomePage() {
     }
   };
 
+  // Instant 1-Click Word Export (Zero-Token Client Side)
+  const handleDownloadWord = async () => {
+    try {
+      setIsExporting(true);
+      const blob = await generateWordDocx(DEFAULT_EXAM_DATA);
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Khung_Ma_Tran_Khao_Thi_Chuan.docx";
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+
+      setExportSuccess(true);
+      setTimeout(() => setExportSuccess(false), 3000);
+    } catch (err) {
+      console.error(err);
+      alert("Lỗi xuất file. Vui lòng thử lại!");
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
   return (
     <div ref={containerRef} className="min-h-screen bg-white text-neutral-900 font-sans selection:bg-neutral-100 selection:text-neutral-900">
-      {/* BACKGROUND GRID CHUẨN QUỐC TẾ */}
+      {/* BACKGROUND GRID CHUẨN DUB.CO */}
       <div className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-32">
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-70" />
 
@@ -133,12 +162,20 @@ export default function HomePage() {
             >
               Trải nghiệm bảng điều khiển
             </a>
-            <a
-              href="#tinh-nang"
-              className="flex h-11 items-center justify-center rounded-lg border border-neutral-200 bg-white px-6 text-sm font-medium text-neutral-900 transition-all hover:bg-neutral-50 shadow-sm active:scale-95"
+            <button
+              onClick={handleDownloadWord}
+              disabled={isExporting}
+              className="flex h-11 items-center justify-center gap-2 rounded-lg border border-neutral-200 bg-white px-6 text-sm font-medium text-neutral-900 transition-all hover:bg-neutral-50 shadow-sm active:scale-95 disabled:opacity-50"
             >
-              Xem cấu trúc đánh giá
-            </a>
+              {isExporting ? (
+                <Loader2 className="size-4 animate-spin text-neutral-600" />
+              ) : exportSuccess ? (
+                <Check className="size-4 text-emerald-600" />
+              ) : (
+                <Download className="size-4 text-neutral-600" />
+              )}
+              <span>{exportSuccess ? "Đã tải file Word!" : "Tải mẫu Word (.docx)"}</span>
+            </button>
           </div>
 
           {/* 5. FLOATING PILL TABS SWITCHER */}
@@ -190,7 +227,7 @@ export default function HomePage() {
           <div id="mockup" ref={mockupRef} className="mt-6 text-left">
             <div className="rounded-2xl border border-neutral-200 bg-white shadow-2xl overflow-hidden ring-1 ring-neutral-900/5">
               {/* Window Bar */}
-              <div className="flex items-center justify-between border-b border-neutral-200 bg-neutral-50/70 px-4 py-3">
+              <div className="flex flex-wrap items-center justify-between border-b border-neutral-200 bg-neutral-50/70 px-4 py-3 gap-2">
                 <div className="flex items-center gap-2">
                   <div className="size-3 rounded-full bg-red-400/80" />
                   <div className="size-3 rounded-full bg-amber-400/80" />
@@ -200,9 +237,17 @@ export default function HomePage() {
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
+                  <button
+                    onClick={handleDownloadWord}
+                    disabled={isExporting}
+                    className="inline-flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-medium bg-white border border-neutral-200 text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900 transition-all shadow-sm active:scale-95"
+                  >
+                    {isExporting ? <Loader2 className="size-3 animate-spin" /> : <Download className="size-3 text-neutral-500" />}
+                    <span>Xuất Word (.docx)</span>
+                  </button>
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-700 border border-emerald-200">
                     <Check className="size-3 text-emerald-600" />
-                    <span>Tròn 10.0 Điểm Tuyệt Đối</span>
+                    <span>Tròn 10.0 Điểm</span>
                   </span>
                 </div>
               </div>

@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     const model = process.env.NINE_ROUTER_MODEL || "ag/gemini-3.6-flash-low";
 
     // System prompt tinh gọn (<400 tokens) để bảo toàn quota
-    const systemPrompt = `BẠN LÀ CHUYÊN GIA KHẢO THÍ BỘ GD&ĐT VIỆT NAM CHUẨN CÔNG VĂN 7991/BGDĐT-GDTrH.
+    const systemPrompt = `BẠN LÀ CHUYÊN GIA KHẢO THÍ VÀ THIẾT KẾ ĐỀ KIỂM TRA ĐỊNH KỲ.
 QUY TẮC BẮT BUỘC:
 - Tổng điểm: 10.0đ. Tỉ lệ: Biết 40% (4.0đ), Hiểu 30% (3.0đ), Vận dụng 30% (3.0đ).
 - 4 Dạng thức: P.I (Trắc nghiệm nhiều lựa chọn 0.25đ/câu), P.II (Đúng/Sai chấm lũy tiến 0.1-0.25-0.5-1.0đ), P.III (Trả lời ngắn 0.25-0.5đ/câu), P.IV (Tự luận nếu có).
